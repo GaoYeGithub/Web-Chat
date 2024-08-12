@@ -1,0 +1,18 @@
+language = "deno"
+run = "deno run --allow-net --allow-read server.ts"
+modules = ["nodejs-20"]
+
+[env]
+DENO_DIR = "/home/runner/${REPL_SLUG}/.deno"
+
+[nix]
+channel = "stable-23_05"
+
+[deployment]
+run = ["deno", "run", "--lock=lock.json", "--allow-all index.ts"]
+deploymentTarget = "cloudrun"
+ignorePorts = false
+
+[[ports]]
+localPort = 8080
+externalPort = 8080
